@@ -16,6 +16,16 @@ public class Vehicle {
     @JoinColumn(nullable = false)
     private VehicleType type;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 6)
     private String plate;
+
+    @Column(nullable = false,columnDefinition = "TINYINT (1)")
+    private Boolean status;
+
+    @PrePersist
+    protected void prePersist() {
+        if (this.status == null) {
+            this.status = true;
+        }
+    }
 }

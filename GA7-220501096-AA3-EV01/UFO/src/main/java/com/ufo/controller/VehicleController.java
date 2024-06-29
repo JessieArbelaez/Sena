@@ -42,13 +42,37 @@ public class VehicleController {
 
     //Delete
     @DeleteMapping(value = "/{id}")
-    public String delete(@PathVariable(value = "id") Long id) {
+    public String delete(@PathVariable("id") Long id) {
         Optional<Vehicle> vehicleFound = this.vehicleRepository.findById(id);
         if (vehicleFound.isEmpty()) {
             return "Vehículo no encontrado.";
         } else {
             this.vehicleRepository.deleteById(id);
             return "Vehículo borrado satisfactoriamente.";
+        }
+    }
+
+    @PatchMapping("/activate/{id}")
+    public String activate(@PathVariable("id") Long id) {
+        Optional<Vehicle> vehicleFound = this.vehicleRepository.findById(id);
+        if (vehicleFound.isEmpty()) {
+            return "Vehículo no encontrado.";
+        } else {
+            vehicleFound.get().setStatus(Boolean.TRUE);
+            this.vehicleRepository.save(vehicleFound.get());
+            return "Vehículo activado.";
+        }
+    }
+
+    @PatchMapping("/deactivate/{id}")
+    public String deactivate(@PathVariable("id") Long id) {
+        Optional<Vehicle> vehicleFound = this.vehicleRepository.findById(id);
+        if (vehicleFound.isEmpty()) {
+            return "Vehículo no encontrado.";
+        } else {
+            vehicleFound.get().setStatus(Boolean.FALSE);
+            this.vehicleRepository.save(vehicleFound.get());
+            return "Vehículo desactivado.";
         }
     }
 }
