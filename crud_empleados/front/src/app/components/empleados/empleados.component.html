@@ -1,0 +1,69 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-5">
+
+            <div class="card">
+
+                <div class="card-content">
+
+                    <form #empleadoForm="ngForm" (ngSubmit)="agregarEmpleado(empleadoForm)">
+
+                        <div class="row">
+
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">person</i>
+                                <input type="text" name="name" #name="ngModel"
+                                    [(ngModel)]="empleadoService.selectedEmpleado.name" placeholder="Ingrese su nombre">
+                            </div>
+
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">work</i>
+                                <input type="text" name="position" #position="ngModel"
+                                    [(ngModel)]="empleadoService.selectedEmpleado.position"
+                                    placeholder="Ingrese su cargo">
+                            </div>
+
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">location_city</i>
+                                <input type="text" name="office" #office="ngModel"
+                                    [(ngModel)]="empleadoService.selectedEmpleado.office"
+                                    placeholder="Ingrese su lugar de trabajo">
+                            </div>
+
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">attach_money</i>
+                                <input type="text" name="salary" #salary="ngModel"
+                                    [(ngModel)]="empleadoService.selectedEmpleado.salary"
+                                    placeholder="Ingrese su salario">
+                            </div>
+
+                            <div class="card-action">
+                                <div class="input-field col s12">
+                                    <button class="btn right" (click)="resetForm(empleadoForm)">
+                                        <i class="material-icons">clear</i> Limpiar
+                                    </button>
+                                    <button class="btn">
+                                        <i class="material-icons">save</i> Guardar
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-7">
+            <!-- Contenido adicional si es necesario -->
+        </div>
+
+    </div>
+
+</div>
